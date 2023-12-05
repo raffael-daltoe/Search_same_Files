@@ -19,21 +19,18 @@ def procurar_arquivo(nome_arquivo, diretorio):
             if arquivo == nome_arquivo:
                 caminho_completo = os.path.join(root, arquivo)
                 return caminho_completo
-
-    # Se o arquivo não for encontrado, retorna None
     return None
 
 def comparar_diretorios(diretorio1, diretorio2, differents, not_exist):
-    # Lista todos os arquivos no diretório de origem
     arquivos_origem = os.listdir(diretorio1)
 
-    # Para cada arquivo no diretório de origem, procura no diretório de destino
+    # for each file in the dir, search on the dir destine
     for arquivo_origem in arquivos_origem:
         caminho_arquivo_origem = os.path.join(diretorio1, arquivo_origem)
 
-        # Verifica se o item é um arquivo
+        # verify if the archive is one file or dir
         if os.path.isfile(caminho_arquivo_origem):
-            # Procura pelo mesmo arquivo no diretório de destino
+            # search for the same file in the dir of destine
             caminho_arquivo_destino = procurar_arquivo(arquivo_origem, diretorio2)
 
             git = re.compile(r'.*git\w*')
@@ -50,7 +47,7 @@ def comparar_diretorios(diretorio1, diretorio2, differents, not_exist):
                 if not correspondencias1:
                     not_exist.append(f"File {caminho_arquivo_origem} exists in {diretorio1}, but not in {diretorio2}.")
 
-# Exemplo de uso
+# example of use
 cva_2024 = "/home/raffael/Desktop/Project/cv_2024"
 cva_2021 = "/home/raffael/Desktop/Project/cv_2022"
 
@@ -59,12 +56,12 @@ not_exist = []
 
 comparar_diretorios(cva_2024, cva_2021, differents, not_exist)
 
-# Imprimir as diferenças acumuladas
+# Print the differences
 print("Differents Dir")
 for diff in differents:
     print(diff)
 
-# Imprimir os arquivos que existem em cva_2024 mas não em cva_2021
+# print the file what have in cva_2024 but not in cva_2021
 print("\ndon't exist in the cva_2022")
 for missing in not_exist:
     print(missing)
