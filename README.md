@@ -7,4 +7,3 @@ For use this you need change the directorie:
     python
       cva_2024 = "/home/raffael/Desktop/Project/cv_2024"
       cva_2021 = "/home/raffael/Desktop/Project/cv_2022"
-    
